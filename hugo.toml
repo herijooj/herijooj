@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://herijooj.github.io/"
 languageCode = "en"
 title = "Heric's Site"
 theme = "notepad"
@@ -7,8 +7,8 @@ enableRobotsTXT = true
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 
-relativeURLs = true
-canonifyURLs = false
+relativeURLs = false
+canonifyURLs = true
 
 [pagination]
   pagerSize = 10

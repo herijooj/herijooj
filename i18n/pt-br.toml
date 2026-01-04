@@ -1,11 +1,8 @@
-[[translation]]
-id = "footer.builtWithHugo"
+[footer.builtWithHugo]
 translation = "Feito com Hugo"
 
-[[translation]]
-id = "titlebar.homeLabel"
+[titlebar.homeLabel]
 translation = "Casa"
 
-[[translation]]
-id = "navigation.switchToLanguage"
+[navigation.switchToLanguage]
 translation = "Mudar para {{ .language }}"
