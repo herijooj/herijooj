@@ -33,11 +33,14 @@
             git
             watchexec
             markdownlint-cli
+            nodejs_20
+            chromium
           ];
 
           shellHook = ''
             echo "Dev shell ready: $(hugo version)"
             alias mlint="markdownlint '**/*.md'"
+            alias lh="npx lighthouse --output json --output html --output path ./lighthouse-report"
           '';
         };
       });

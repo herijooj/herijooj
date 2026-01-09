@@ -7,6 +7,10 @@ resources/_gen/
 # Nix build result
 result
 
+# Direnv
+.direnv/
+.envrc
+
 # Hugo build lock file
 .hugo_build.lock
 
@@ -31,3 +35,6 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.bak
+node_modules
+
+node_modules

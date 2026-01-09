@@ -1,0 +1,26 @@
+{
+  "name": "herijooj.github.io",
+  "version": "1.0.0",
+  "description": "A personal website built with Hugo, featuring a unique Notepad-inspired theme.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herijooj/herijooj.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/herijooj/herijooj.github.io/issues"
+  },
+  "homepage": "https://github.com/herijooj/herijooj.github.io#readme",
+  "dependencies": {
+    "lighthouse": "^13.0.1"
+  }
+}

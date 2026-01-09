@@ -7,6 +7,14 @@ enableRobotsTXT = true
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 
+[imaging]
+  resampleFilter = "lanczos"
+  quality = 80
+
+[mediaTypes]
+  [mediaTypes."image/webp"]
+    suffixes = ["webp"]
+
 relativeURLs = false
 canonifyURLs = true
 
@@ -15,6 +23,10 @@ canonifyURLs = true
 
 [params]
   author = "Heric Camargo"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
 
 [languages]
 

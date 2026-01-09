@@ -1,5 +1,10 @@
 { pkgs ? import <nixpkgs> {} }:
 
+let
+  # Lighthouse needs a browser to audit pages
+  chromium = pkgs.chromium;
+in
+
 pkgs.mkShell {
   # CLI tools available in the dev shell
   packages = with pkgs; [
@@ -10,6 +15,8 @@ pkgs.mkShell {
     gifsicle       # for GIF optimization
     libwebp        # for WebP conversion
     markdownlint-cli  # Markdown linter
+    nodejs_20      # Required for lighthouse CLI
+    chromium       # Browser for lighthouse audits
   ];
 
   shellHook = ''
@@ -22,5 +29,6 @@ pkgs.mkShell {
     alias gpush="git push"
     alias gpull="git pull"
     alias mlint="markdownlint '**/*.md'"
+    alias lh="npx lighthouse --output json --output html --output path ./lighthouse-report"
   '';
 }
