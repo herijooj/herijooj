@@ -2,6 +2,7 @@
 title: "The last great ThinkPad"
 date: 2026-01-09T15:15:31-03:00
 slug: "last-great-thinkpad"
+translationKey: "last-great-thinkpad"
 draft: false
 ---
 If you go on 4chan/g/ or Reddit and ask: "what is the last great ThinkPad?" you're going to get answers like the T480, the last "fully repairable" one, or the T440p.

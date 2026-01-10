@@ -1,0 +1,71 @@
+{{ $site := .Site }}
+{{ $menu := $site.Menus.main }}
+{{ $languages := $site.Languages }}
+{{ $currentPage := . }}
+<div id="bar">
+    <ul>
+        {{ if $menu }}
+        {{ range $menu }}
+        {{ $link := .URL | relLangURL }}
+        {{ with .Page }}
+        {{ $link = .RelPermalink }}
+        {{ end }}
+        {{ $isActive := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) (eq
+        $currentPage.RelPermalink $link) }}
+        <li>
+            <a href="{{ $link }}" {{ if $isActive }}aria-current="page" {{ end }}>{{ .Name }}</a>
+        </li>
+        {{ end }}
+        {{ else }}
+        {{ $fallback := slice
+        (dict "name" "Casa" "url" "/")
+        (dict "name" "Fotos" "url" "/fotos/")
+        (dict "name" "Sobre" "url" "/sobre/")
+        (dict "name" "Posts" "url" "/posts/")
+        (dict "name" "Projetos" "url" "/projetos/")
+        (dict "name" "Contato" "url" "/contato/")
+        }}
+        {{ range $fallback }}
+        {{ $isActive := eq $.RelPermalink (.url | relLangURL) }}
+        <li>
+            <a href="{{ .url | relLangURL }}" {{ if $isActive }}aria-current="page" {{ end }}>{{ .name }}</a>
+        </li>
+        {{ end }}
+        {{ end }}
+        {{ if hugo.IsMultilingual }}
+        {{ $currentLang := $site.Language.Lang }}
+        {{ $otherLangs := where $languages "Lang" "ne" $currentLang }}
+        {{ with index $otherLangs 0 }}
+        {{ $switchLang := . }}
+        {{ $scratch := newScratch }}
+        {{ $scratch.Set "target" "" }}
+        {{ with (index (where $currentPage.Translations "Language.Lang" $switchLang.Lang) 0) }}
+        {{ $scratch.Set "target" .RelPermalink }}
+        {{ else }}
+        {{ with (index (where $currentPage.AllTranslations "Language.Lang" $switchLang.Lang) 0) }}
+        {{ $scratch.Set "target" .RelPermalink }}
+        {{ else }}
+        {{/* Instead of falling back to home, construct the proper URL path */}}
+        {{ $sortedLangs := sort $languages "Weight" "asc" }}
+        {{ $defaultLang := index $sortedLangs 0 }}
+        {{ $relativePath := $currentPage.RelPermalink }}
+        {{/* Remove current language prefix if it exists */}}
+        {{ if ne $currentLang $defaultLang.Lang }}
+        {{ $relativePath = strings.TrimPrefix (printf "/%s/" $currentLang) $relativePath }}
+        {{ end }}
+        {{/* Construct new path with target language */}}
+        {{ $newPath := cond (eq $switchLang.Lang $defaultLang.Lang) $relativePath (printf "/%s%s" $switchLang.Lang
+        $relativePath) }}
+        {{ $scratch.Set "target" $newPath }}
+        {{ end }}
+        {{ end }}
+        {{ $target := $scratch.Get "target" }}
+        {{ $labelData := dict "language" $switchLang.LanguageName }}
+        <li class="lang-switcher">
+            <a href="{{ $target }}" lang="{{ $switchLang.Lang }}" aria-label="{{ i18n " navigation.switchToLanguage"
+                $labelData }}">{{ $switchLang.LanguageName }}</a>
+        </li>
+        {{ end }}
+        {{ end }}
+    </ul>
+</div>
