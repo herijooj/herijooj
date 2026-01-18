@@ -1,6 +1,8 @@
 #main p {
   padding-top: 0;
   padding-bottom: 0;
+  padding-left: 15px;
+  padding-right: 15px;
   text-align: justify;
 }
 
@@ -25,6 +27,8 @@
   font-family: $font-heading;
   font-size: 13px;
   margin-top: 0;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 img {
