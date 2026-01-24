@@ -37,34 +37,14 @@
         {{ $otherLangs := where $languages "Lang" "ne" $currentLang }}
         {{ with index $otherLangs 0 }}
         {{ $switchLang := . }}
-        {{ $scratch := newScratch }}
-        {{ $scratch.Set "target" "" }}
-        {{ with (index (where $currentPage.Translations "Language.Lang" $switchLang.Lang) 0) }}
-        {{ $scratch.Set "target" .RelPermalink }}
-        {{ else }}
-        {{ with (index (where $currentPage.AllTranslations "Language.Lang" $switchLang.Lang) 0) }}
-        {{ $scratch.Set "target" .RelPermalink }}
-        {{ else }}
-        {{/* Instead of falling back to home, construct the proper URL path */}}
-        {{ $sortedLangs := sort $languages "Weight" "asc" }}
-        {{ $defaultLang := index $sortedLangs 0 }}
-        {{ $relativePath := $currentPage.RelPermalink }}
-        {{/* Remove current language prefix if it exists */}}
-        {{ if ne $currentLang $defaultLang.Lang }}
-        {{ $relativePath = strings.TrimPrefix (printf "/%s/" $currentLang) $relativePath }}
-        {{ end }}
-        {{/* Construct new path with target language */}}
-        {{ $newPath := cond (eq $switchLang.Lang $defaultLang.Lang) $relativePath (printf "/%s%s" $switchLang.Lang
-        $relativePath) }}
-        {{ $scratch.Set "target" $newPath }}
-        {{ end }}
-        {{ end }}
-        {{ $target := $scratch.Get "target" }}
+        {{ range (where $currentPage.Translations "Language.Lang" $switchLang.Lang) }}
         {{ $labelData := dict "language" $switchLang.LanguageName }}
         <li class="lang-switcher">
-            <a href="{{ $target }}" lang="{{ $switchLang.Lang }}" aria-label="{{ i18n " navigation.switchToLanguage"
-                $labelData }}">{{ $switchLang.LanguageName }}</a>
+            {{ $ariaLabel := i18n "navigation.switchToLanguage" $labelData }}
+            <a href="{{ .RelPermalink }}" lang="{{ $switchLang.Lang }}" aria-label="{{ $ariaLabel }}">{{
+                $switchLang.LanguageName }}</a>
         </li>
+        {{ end }}
         {{ end }}
         {{ end }}
     </ul>

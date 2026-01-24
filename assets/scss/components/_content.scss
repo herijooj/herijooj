@@ -12,6 +12,13 @@
   padding-top: 0;
 }
 
+#main hr {
+  border: 0;
+  border-top: 1px solid #bbb;
+  margin: 1rem 0;
+  height: 0;
+}
+
 #main a {
   text-decoration: underline;
   color: $color-link;
@@ -25,8 +32,51 @@
 
 #main h1 {
   font-family: $font-heading;
-  font-size: 13px;
+  font-size: 20px;
+  font-weight: bold;
   margin-top: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.post-title {
+  margin-bottom: 2px;
+}
+
+.post-date {
+  padding-top: 0;
+  margin-top: 0;
+  font-size: 14px;
+}
+
+#main h2 {
+  font-family: $font-heading;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 18px;
+  margin-bottom: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#main h3 {
+  font-family: $font-heading;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#main h4,
+#main h5,
+#main h6 {
+  font-family: $font-heading;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 12px;
+  margin-bottom: 6px;
   padding-left: 15px;
   padding-right: 15px;
 }

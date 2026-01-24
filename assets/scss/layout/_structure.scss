@@ -1,21 +1,21 @@
 #main {
   width: 100%;
   min-height: 400px;
-  padding: 0 28px 0 10px;
+  padding: 0 28px 25px 10px;
   margin-top: 0;
   line-height: 1.25;
   font-family: $font-heading;
   color: $color-main-text;
   background:
-  url(../images/content-left.png) repeat-y left top,
-  url(../images/content-right.png) repeat-y right top,
-  url(../images/content-center.png) repeat left top;
+    url(../images/content-left.png) repeat-y left top,
+    url(../images/content-right.png) repeat-y right top,
+    url(../images/content-center.png) repeat left top;
 }
 
-#main > *:first-child {
+#main>*:first-child {
   margin-top: 0;
 }
 
-#main > *:last-child {
+#main>*:last-child {
   margin-bottom: 0;
 }
